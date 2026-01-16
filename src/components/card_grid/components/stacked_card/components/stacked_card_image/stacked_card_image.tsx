@@ -13,57 +13,64 @@ import type {
 import styles from "../../stacked_card_shared.module.css";
 
 interface StackedCardImageProps {
-	src: string;
-	srcset?: ImageSrcsetEntry[];
-	alt: string;
-	padded?: boolean;
-	bezel?: Bezel;
-	bezelCrop?: BezelCropConfiguration;
+  src: string;
+  srcset?: ImageSrcsetEntry[];
+  alt: string;
+  padded?: boolean;
+  bezel?: Bezel;
+  bezelCrop?: BezelCropConfiguration;
 }
 
 export function StackedCardImage({
-	src,
-	srcset,
-	alt,
-	bezel,
-	bezelCrop,
-	padded = true,
+  src,
+  srcset,
+  alt,
+  bezel,
+  bezelCrop,
+  padded = true,
 }: StackedCardImageProps) {
-	const theme = useTheme();
-	const canvasRef = useRef<HTMLCanvasElement>(null);
+  const theme = useTheme();
+  const canvasRef = useRef<HTMLCanvasElement>(null);
 
-	useBezelImageRenderer({
-		canvasRef,
-		src,
-		srcset,
-		bezel: bezel || "iPhone 17 Black",
-		crop: bezelCrop,
-	});
+  useBezelImageRenderer({
+    canvasRef,
+    src,
+    srcset,
+    bezel: bezel || "iPhone 17 Black",
+    crop: bezelCrop,
+  });
 
-	const croppedTopClassName =
-		bezel && bezelCrop?.edge === "top" ? styles.croppedTop : "";
-	const croppedBottomClassName =
-		bezel && bezelCrop?.edge === "bottom" ? styles.croppedBottom : "";
-	const paddedClassName = padded ? styles.padded : "";
+  /**
+   * The theme is null during static-site generation
+   */
+  if (theme === null) {
+    return null;
+  }
 
-	return (
-		<div className={styles.stackedCardMedia}>
-			{bezel === undefined && (
-				<img
-					loading="lazy"
-					decoding="async"
-					src={findSrcForTheme(src, srcset, theme ?? "light")}
-					alt={alt}
-					className={`${styles.mediaObject} ${paddedClassName}`}
-				/>
-			)}
-			{bezel !== undefined && (
-				<canvas
-					ref={canvasRef}
-					className={`${styles.mediaObject} ${paddedClassName} ${croppedTopClassName} ${croppedBottomClassName}`}
-					aria-label={alt}
-				/>
-			)}
-		</div>
-	);
+  const croppedTopClassName =
+    bezel && bezelCrop?.edge === "top" ? styles.croppedTop : "";
+  const croppedBottomClassName =
+    bezel && bezelCrop?.edge === "bottom" ? styles.croppedBottom : "";
+  const paddedClassName = padded ? styles.padded : "";
+
+  return (
+    <div className={styles.stackedCardMedia}>
+      {bezel === undefined && (
+        <img
+          loading="lazy"
+          decoding="async"
+          src={findSrcForTheme(src, srcset, theme ?? "light")}
+          alt={alt}
+          className={`${styles.mediaObject} ${paddedClassName}`}
+        />
+      )}
+      {bezel !== undefined && (
+        <canvas
+          ref={canvasRef}
+          className={`${styles.mediaObject} ${paddedClassName} ${croppedTopClassName} ${croppedBottomClassName}`}
+          aria-label={alt}
+        />
+      )}
+    </div>
+  );
 }
