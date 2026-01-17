@@ -22,13 +22,17 @@ export const metadata: Metadata = {
   description: "Website description",
 
   /**
+   * Your website URL.
+   */
+  metadataBase: new URL("https://app-website-url.com"),
+
+  /**
    * Info inside `openGraph` and `twitter` is used to show rich previews
    * on social media when someone shares a link to your website.
    *
    * AppView comes with a tool to help you generate an Open Graph image,
    * run the dev server and go to `http://localhost:3000/open-graph-builder`.
    */
-  metadataBase: new URL("https://app-website-url.com"),
   openGraph: {
     title: "App title",
     description: "App description",
