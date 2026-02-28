@@ -214,7 +214,6 @@ export default function Page() {
 
       <Section paddingTop={60} paddingBottom={160}>
         <DownloadActionButton
-          href="https://apps.apple.com/app/id6502667826"
           size="medium"
         />
       </Section>
