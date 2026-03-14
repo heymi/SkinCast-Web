@@ -1,69 +1,74 @@
-import { AppleFeatureLaurelsBadge } from "@/components/apple_feature_laurels_badge/apple_feature_laurels_badge";
 import { CardGrid } from "@/components/card_grid/card_grid";
 import { DownloadActionButton } from "@/components/download_action_button/download_action_button";
+import { EmailForm } from "@/components/email_form/email_form";
 import { Hero } from "@/components/hero/hero";
-import { RatingLaurelsBadge } from "@/components/rating_laurels_badge/rating_laurels_badge";
 import { Section } from "@/components/section/section";
-import { TestimonialsGrid } from "@/components/testimonials_grid/testimonials_grid";
+import {
+  IS_WAITLIST_ENABLED,
+  LOOPS_WAITLIST_FORM_ID,
+  LOOPS_WAITLIST_USER_GROUP,
+} from "@/constants";
 
 export default function Page() {
   return (
     <>
-      <Section paddingTop={100}>
+      <Section paddingTop={100} navigationAnchor={IS_WAITLIST_ENABLED ? "waitlist" : undefined}>
         <Hero
-          title="App Title"
-          subtitle="Short app description that highlights what the app does and its key value"
+          title="Today’s weather, decoded for your skin."
+          titleFontStyle="display"
+          subtitle={
+            IS_WAITLIST_ENABLED
+              ? "SkinCast uses AI to read today’s climate conditions and translate their skin impact into your care focus, so you know what matters in seconds. Join the waitlist for early access."
+              : "SkinCast uses AI to read today’s climate conditions and translate their skin impact into your care focus, so you know what matters in seconds."
+          }
           media={
             <Hero.Image
-              src="/app_view/screenshot_placeholder.png"
+              src="/screenshots/routine-suggestion.png"
+              transitionSrc="/screenshots/dashboard-score.png"
               bezel="iPhone 17 Black"
-              alt=""
+              alt="Routine suggestion screen explaining how low humidity affects skin"
+              transitionAlt="Skin score dashboard with overall score and condition breakdown"
             />
           }
-          badges={
-            <>
-              <RatingLaurelsBadge
-                showStars={true}
-                rating={4.9}
-                caption="worldwide rating"
+          action={
+            IS_WAITLIST_ENABLED ? (
+              <EmailForm
+                header={<div>Join the waitlist for early access</div>}
+                footerIdleMessage="Early access only. Product updates when they matter."
+                footerSentMessage="You are in. We will let you know when SkinCast opens."
+                providerConfig={{
+                  provider: "loops",
+                  config: {
+                    formId: LOOPS_WAITLIST_FORM_ID,
+                    userGroup: LOOPS_WAITLIST_USER_GROUP,
+                  },
+                }}
               />
-              <AppleFeatureLaurelsBadge featureName="App of the Day" />
-            </>
+            ) : (
+              <DownloadActionButton size="medium" label="Download on the App Store" />
+            )
           }
-          action={<DownloadActionButton size="medium" />}
         />
       </Section>
 
       <Section navigationAnchor="features">
         <CardGrid rowHeight={438}>
-          <CardGrid.StackedCard
+          <CardGrid.ImageBlendCard
             maxWidth="third"
-            title="Feature Title"
-            description="Short feature description"
-            media={
-              <CardGrid.StackedCard.Image
-                src="/app_view/stacked_card_image_placeholder_light.png"
-                srcset={[
-                  {
-                    src: "/app_view/stacked_card_image_placeholder_dark.png",
-                    theme: "dark",
-                  },
-                ]}
-                alt="Grid"
-                bezelCrop={{ edge: "bottom", croppedRatio: 0.1 }}
-              />
-            }
-            textAlignment="leading"
+            imageSrc="/screenshots/derived/ai-module-card.jpg"
+            imageAlt="SkinCast AI analysis screen with an orbit visualization for weather-driven skin guidance"
+            title="AI decodes today’s skin climate."
+            description="SkinCast reads humidity, temperature, UV, and climate stress together, then explains how they may affect your skin today."
           />
 
           <CardGrid.StackedCard
             maxWidth="twoThirds"
-            title="Another Feature Title"
-            description="And another feature description"
+            title="Built for your skin. Not averages."
+            description="Set your concerns once, and each daily read adapts around acne, dryness, sensitivity, redness, and the skin issues you care about most."
             media={
               <CardGrid.StackedCard.Image
-                src="/app_view/screenshot_placeholder.png"
-                alt="Make sure to provide an image description for accessibility purposes"
+                src="/screenshots/concerns-selector.png"
+                alt="Skin concern selection screen with acne, rosacea, dryness, and other options"
                 bezel="iPhone 17 Black"
               />
             }
@@ -72,15 +77,15 @@ export default function Page() {
 
           <CardGrid.StackedCard
             maxWidth="twoThirds"
-            title="Keep Titles Concise"
-            description="Use the extra space on big cards for longer descriptions"
+            title="Go deeper with Pro insights."
+            description="Unlock richer analysis, clearer explanations, and more personalized guidance when you want more than the quick daily read."
             layoutDirection="reverse"
             media={
               <CardGrid.StackedCard.Image
-                src="/app_view/screenshot_placeholder.png"
-                alt="Make sure to provide an image description for accessibility purposes"
+                src="/screenshots/premium-plan.png"
+                alt="Premium plan screen with personalized insights and subscription options"
                 bezel="iPhone 17 Black"
-                bezelCrop={{ edge: "bottom", croppedRatio: 0.25 }}
+                bezelCrop={{ edge: "top", croppedRatio: 0.1 }}
               />
             }
             textAlignment="leading"
@@ -88,48 +93,38 @@ export default function Page() {
 
           <CardGrid.OverlaidCard
             maxWidth="third"
-            imageSrc="/app_view/overlay_image_placeholder_light.png"
-            imageSrcset={[
-              {
-                src: "/app_view/overlay_image_placeholder_dark.png",
-                theme: "dark",
-              },
-            ]}
-            title="Feature On An Overlay Card"
-            description="These look great with photos or a custom graphics if you're willing to go the extra mile"
-            textAlignment="center"
+            imageSrc="/screenshots/widgets-preview.png"
+            title="Widgets that keep the day in view."
+            description="Check today’s skin score, top risk, and care focus right from your Home Screen at a glance."
+            textAlignment="bottomLeading"
+            textColorTheme="light"
           />
 
           <CardGrid.StackedCard
             maxWidth="full"
-            title="Huge Card For a Major Feature"
-            description="Zoomed in UI or a custom graphic look great here"
+            title="See today’s skin stress in seconds."
+            description="A daily score highlights overall skin stress, surfaces the top risk, and breaks down the conditions shaping how your skin may feel."
+            layoutDirection="forward"
             media={
               <CardGrid.StackedCard.Image
-                src="/app_view/stacked_card_image_placeholder_light.png"
-                srcset={[
-                  {
-                    src: "/app_view/stacked_card_image_placeholder_dark.png",
-                    theme: "dark",
-                  },
-                ]}
-                alt="Grid"
-                bezelCrop={{ edge: "bottom", croppedRatio: 0.1 }}
+                src="/screenshots/dashboard-score.png"
+                alt="Skin score dashboard with overall score and condition breakdown"
+                bezel="iPhone 17 Black"
+                bezelCrop={{ edge: "bottom", croppedRatio: 0.34 }}
               />
             }
           />
 
           <CardGrid.StackedCard
             maxWidth="half"
-            title="There Are Different Font Styles For Titles"
-            titleFontStyle="cursive"
-            description="When used sparingly, it adds personality and breaks the monotony"
+            title="Know the next move."
+            description="Get a focused action plan for today, from hydration support to barrier recovery, based on what your skin needs now."
             media={
               <CardGrid.StackedCard.Image
-                src="/app_view/screenshot_placeholder.png"
+                src="/screenshots/score-action-plan.png"
                 bezel="iPhone 17 Black"
-                bezelCrop={{ edge: "bottom", croppedRatio: 0.5 }}
-                alt=""
+                bezelCrop={{ edge: "top", croppedRatio: 0.42 }}
+                alt="Action plan screen with moisturizer guidance and seven-day impact trend"
               />
             }
             layoutDirection="reverse"
@@ -138,14 +133,14 @@ export default function Page() {
 
           <CardGrid.StackedCard
             maxWidth="half"
-            title="Check AppView Docs For More Guidance"
-            description="There is a section about each card style and how to use it best"
+            title="Stay steady over the week."
+            description="Follow your 7-day trend to spot patterns, see what is improving, and keep your routine aligned with changing conditions."
             media={
               <CardGrid.StackedCard.Image
-                src="/app_view/screenshot_placeholder.png"
+                src="/screenshots/score-action-plan.png"
                 bezel="iPhone 17 Black"
-                bezelCrop={{ edge: "top", croppedRatio: 0.5 }}
-                alt=""
+                bezelCrop={{ edge: "top", croppedRatio: 0.54 }}
+                alt="Action plan screen with moisturizer guidance and seven-day impact trend"
               />
             }
             layoutDirection="forward"
@@ -154,68 +149,48 @@ export default function Page() {
         </CardGrid>
       </Section>
 
-      <Section title="What people are saying" navigationAnchor="testimonials">
-        <TestimonialsGrid maxColumnCount={2}>
-          <TestimonialsGrid.Testimonial
-            message="Showing social proof is very important. Show some nice words about your app from social media or App Store reviews."
-            authorName="Jane Doe"
-            authorTitle="Person's Title"
-            authorImageUrl="/app_view/profile_image_placeholder.png"
-            messageFontStyle="italic"
-            source="https://threads.com/some-thread-message"
-          ></TestimonialsGrid.Testimonial>
-
-          <TestimonialsGrid.Testimonial
-            message="If it's an App Store review, make sure to show the stars rating, it catches attention and add visual variety."
-            authorName="John Smith"
-            source="appStore"
-            starsRating={true}
-          ></TestimonialsGrid.Testimonial>
-
-          <TestimonialsGrid.Testimonial
-            message="Include a link to the testimonial's source when possible, this makes them look more trustworthy"
-            authorName="Emily Johnson"
-            source="https://reddit.com/some-thread-message"
-          ></TestimonialsGrid.Testimonial>
-
-          <TestimonialsGrid.Testimonial
-            message="Having person's credentials could also help build trust, especially if they are relevant to your app's domain."
-            authorName="Michael Brown"
-            authorTitle="CEO of Some Company"
-            source="https://x.com/some-thread-message"
-          ></TestimonialsGrid.Testimonial>
-        </TestimonialsGrid>
-      </Section>
-
-      <Section title="Additional Highlights">
+      <Section title="Why consistency gets easier">
         <CardGrid rowHeight={280}>
           <CardGrid.IconCard
             maxWidth="third"
             iconName="check_circle"
-            title="Icon Card"
-            description="These are great for listing highlights that don't need images"
+            title="Fast daily read"
+            description="Open once, scan in seconds, and know whether today calls for hydration, calming care, or barrier support."
           />
 
           <CardGrid.IconCard
             maxWidth="third"
             iconName="lock"
-            title="There Are A Ton Of Icons"
-            description="AppView uses Material Symbols for icons with a huge collection to choose from"
+            title="More tailored guidance"
+            description="Daily guidance adapts to your concerns and current condition, so the advice feels personal instead of generic."
           />
 
           <CardGrid.IconCard
             maxWidth="third"
             iconName="star"
-            title="Check AppView Docs"
-            description="There are sections about using icons and icon cards"
+            title="Better long-term rhythm"
+            description="Scores, trends, and action plans help you stay consistent and learn what your skin responds to over time."
           />
         </CardGrid>
       </Section>
 
       <Section paddingTop={60} paddingBottom={160}>
-        <DownloadActionButton
-          size="medium"
-        />
+        {IS_WAITLIST_ENABLED ? (
+          <EmailForm
+            header={<div>Be first when SkinCast launches</div>}
+            footerIdleMessage="Join the list for launch access and product updates."
+            footerSentMessage="Thanks. You are on the list."
+            providerConfig={{
+              provider: "loops",
+              config: {
+                formId: LOOPS_WAITLIST_FORM_ID,
+                userGroup: LOOPS_WAITLIST_USER_GROUP,
+              },
+            }}
+          />
+        ) : (
+          <DownloadActionButton size="medium" />
+        )}
       </Section>
     </>
   );

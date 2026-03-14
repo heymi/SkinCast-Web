@@ -32,7 +32,13 @@ export type Bezel =
   | "iPhone Air Light Gold"
   | "iPhone Air Space Black";
 
-export type FontStyle = "sans" | "mono" | "rounded" | "whimsical" | "cursive";
+export type FontStyle =
+  | "sans"
+  | "mono"
+  | "rounded"
+  | "display"
+  | "whimsical"
+  | "cursive";
 
 export type ThemeColorKey =
   | "text-primary"

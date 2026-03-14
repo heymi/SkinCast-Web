@@ -1,4 +1,4 @@
-import { Caveat, Dancing_Script } from "next/font/google";
+import { Caveat, Dancing_Script, Playfair_Display } from "next/font/google";
 import { ColorScheme } from "./types/shared";
 
 /**
@@ -24,6 +24,7 @@ export const APP_ID = "1234567890";
  */
 export const WHIMSICAL_FONT = Caveat({ subsets: ["latin"] });
 export const CURSIVE_FONT = Dancing_Script({ subsets: ["latin"] });
+export const DISPLAY_FONT = Playfair_Display({ subsets: ["latin"] });
 
 export const MATERIAL_SYMBOLS = [
   "send",
@@ -78,4 +79,8 @@ export const COLORS: ColorScheme = {
 
 export const MAX_RELEASE_NOTES_PER_PAGE = 5;
 
-export const IS_WAITLIST_ENABLED = false;
+export const IS_WAITLIST_ENABLED = true;
+export const LOOPS_WAITLIST_FORM_ID =
+  process.env.NEXT_PUBLIC_LOOPS_FORM_ID ?? "";
+export const LOOPS_WAITLIST_USER_GROUP =
+  process.env.NEXT_PUBLIC_LOOPS_USER_GROUP ?? "waitlist";

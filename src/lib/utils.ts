@@ -3,7 +3,7 @@ import type {
 	FontStyle,
 	ImageSrcsetEntry,
 } from "../types/shared";
-import { CURSIVE_FONT, WHIMSICAL_FONT } from "../constants";
+import { CURSIVE_FONT, DISPLAY_FONT, WHIMSICAL_FONT } from "../constants";
 
 export function findSrcForTheme(
 	src: string,
@@ -25,6 +25,7 @@ export function buildClassNameForFontStyle(
 		sans: "",
 		mono: "",
 		rounded: "",
+		display: "",
 		whimsical: "",
 		cursive: "",
 	},
@@ -36,6 +37,8 @@ export function buildClassNameForFontStyle(
 			return `monoFont ${extraClassName.mono}`;
 		case "rounded":
 			return `roundedFont ${extraClassName.rounded}`;
+		case "display":
+			return `displayFont ${DISPLAY_FONT.className} ${extraClassName.display}`;
 		case "whimsical":
 			return `whimsicalFont ${WHIMSICAL_FONT.className} ${extraClassName.whimsical}`;
 		case "cursive":

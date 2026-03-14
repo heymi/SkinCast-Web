@@ -13,6 +13,8 @@ export function DownloadActionButton({
   label = "Download",
   size = "small",
 }: DownloadActionButtonProps) {
+  const target = href.startsWith("http") ? "_blank" : undefined;
+
   let appleLogoSize;
 
   switch (size) {
@@ -32,7 +34,7 @@ export function DownloadActionButton({
     <a
       href={href}
       className={`${styles.downloadActionButton} ${styles[size]}`}
-      target="_blank"
+      target={target}
     >
       <div className={styles.label}>
         <div className={styles.appleLogo}>

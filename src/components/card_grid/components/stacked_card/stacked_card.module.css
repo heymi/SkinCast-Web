@@ -202,5 +202,40 @@
       grid-template-columns: 1fr 2fr;
       grid-template-areas: "text media";
     }
+
+    &.full {
+      &.forward {
+        grid-template-columns: 1.45fr 1fr;
+
+        .text {
+          padding: 52px 72px 52px 24px;
+        }
+      }
+
+      &.reverse {
+        grid-template-columns: 1fr 1.45fr;
+
+        .text {
+          padding: 52px 24px 52px 72px;
+        }
+      }
+
+      .text {
+        .textContent {
+          max-width: 460px;
+        }
+
+        .title {
+          font-size: 40px;
+          line-height: 1;
+        }
+
+        .description {
+          font-size: 17px;
+          line-height: 1.12;
+          margin-top: 12px;
+        }
+      }
+    }
   }
 }

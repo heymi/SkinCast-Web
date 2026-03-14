@@ -12,11 +12,13 @@ export function GetNotifiedActionButton({
   label = "Get notified",
   size = "medium",
 }: GetNotifiedActionButtonProps) {
+  const target = href.startsWith("http") ? "_blank" : undefined;
+
   return (
     <a
       href={href}
       className={`${styles.downloadActionButton} ${styles[size]}`}
-      target="_blank"
+      target={target}
     >
       <div className={styles.label}>
         <div className={styles.sendIcon}>

@@ -31,44 +31,68 @@ export function EmailForm({
 }: EmailFormProps) {
   const inputRef = useRef<HTMLInputElement>(null);
   const [email, setEmail] = useState("");
-  const [isSent, setIsSent] = useState(false);
-  const [showError, setShowError] = useState(false);
+  const [submitState, setSubmitState] = useState<
+    "idle" | "submitting" | "sent" | "error"
+  >("idle");
+  const [errorMessage, setErrorMessage] = useState("");
+  const isSent = submitState === "sent";
+  const showError = submitState === "error";
+  const isSubmitting = submitState === "submitting";
+  const isConfigured = isProviderConfigured(providerConfig);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+  const onSubmit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const isValidEmail = validateEmail(email);
 
     if (!isValidEmail) {
-      setIsSent(false);
-      setShowError(true);
+      setSubmitState("error");
+      setErrorMessage("Please enter a valid email.");
       inputRef.current?.focus();
       return;
     }
 
-    switch (providerConfig.provider) {
-      case "loops":
-        sendToLoops({ email, config: providerConfig.config });
-        break;
-      default:
-        console.error("Unsupported provider");
+    if (!isConfigured) {
+      setSubmitState("error");
+      setErrorMessage("Waitlist is not configured yet.");
+      return;
     }
 
-    setEmail("");
-    setIsSent(true);
-    setShowError(false);
+    setSubmitState("submitting");
+    setErrorMessage("");
+
+    try {
+      switch (providerConfig.provider) {
+        case "loops":
+          await sendToLoops({ email, config: providerConfig.config });
+          break;
+        default:
+          throw new Error("Unsupported provider");
+      }
+
+      setEmail("");
+      setSubmitState("sent");
+    } catch (error) {
+      console.error(error);
+      setSubmitState("error");
+      setErrorMessage("Something went wrong. Please try again.");
+      inputRef.current?.focus();
+    }
   };
 
   const onInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
-    setIsSent(false);
-    setShowError(false);
+    setSubmitState("idle");
+    setErrorMessage("");
   };
 
   useEffect(() => {
     if (!showError) return;
 
-    const timeout = setTimeout(() => setShowError(false), 3000);
+    const timeout = setTimeout(() => {
+      setSubmitState("idle");
+      setErrorMessage("");
+    }, 3000);
     return () => clearTimeout(timeout);
   }, [showError]);
 
@@ -81,6 +105,7 @@ export function EmailForm({
           className={styles.emailInput}
           type="email"
           name="email"
+          disabled={isSubmitting || !isConfigured}
           aria-invalid={showError}
           value={email}
           onChange={onInputChange}
@@ -90,6 +115,8 @@ export function EmailForm({
         <button
           className={`${styles.sendButton} ${isSent ? styles.sent : ""}`}
           type="submit"
+          disabled={isSubmitting || !isConfigured}
+          aria-busy={isSubmitting}
           aria-label="Send email"
         >
           <div className={styles.sendIcon}>
@@ -122,7 +149,7 @@ export function EmailForm({
           className={`${styles.footerMessage} ${styles.footerError}`}
           aria-hidden={!showError}
         >
-          This email is incorrect.
+          {errorMessage}
         </span>
       </output>
     </form>
@@ -154,7 +181,16 @@ function validateEmail(value: string) {
   );
 }
 
-function sendToLoops({
+function isProviderConfigured(providerConfig: ProviderConfig) {
+  switch (providerConfig.provider) {
+    case "loops":
+      return providerConfig.config.formId.trim().length > 0;
+    default:
+      return false;
+  }
+}
+
+async function sendToLoops({
   email,
   config,
 }: {
@@ -167,11 +203,18 @@ function sendToLoops({
     formBody.append("userGroup", config.userGroup);
   }
 
-  fetch(`https://app.loops.so/api/newsletter-form/${config.formId}`, {
-    method: "POST",
-    body: formBody.toString(),
-    headers: {
-      "Content-Type": "application/x-www-form-urlencoded",
+  const response = await fetch(
+    `https://app.loops.so/api/newsletter-form/${config.formId}`,
+    {
+      method: "POST",
+      body: formBody.toString(),
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
     },
-  });
+  );
+
+  if (!response.ok) {
+    throw new Error(`Loops waitlist request failed with status ${response.status}`);
+  }
 }

@@ -33,7 +33,7 @@ export function StackedCard({
     <figure
       className={`${sharedGridStyles.gridCardItem} ${sharedGridStyles[maxWidth]}`}
     >
-      <div className={`${styles.content} ${styles[layoutDirection]}`}>
+      <div className={`${styles.content} ${styles[layoutDirection]} ${styles[maxWidth]}`}>
         <div className={styles.media}>{media}</div>
         <div
           className={`${styles.text} ${styles[layoutDirection]} ${styles[textAlignment]}`}

@@ -104,3 +104,8 @@ ol[role="list"] {
     "Segoe UI Rounded", "Segoe UI", "Roboto", "Noto Sans Rounded", "Nunito",
     sans-serif;
 }
+
+.displayFont {
+  line-height: 0.96;
+  letter-spacing: -0.045em;
+}

@@ -30,3 +30,13 @@ For bugs and feature requests, please create an issue in this repo.
 ## Getting Started
 
 Head over to <a href="https://appview.dev/docs">the documentation</a>. It will walk you through everything from running the project locally to customizing everything and eventually deploying it to production.
+
+## Waitlist Setup
+
+This project can submit waitlist signups directly to Loops from the client.
+
+1. Copy `.env.example` to `.env.local`
+2. Set `NEXT_PUBLIC_LOOPS_FORM_ID` to your Loops newsletter form ID
+3. Optionally change `NEXT_PUBLIC_LOOPS_USER_GROUP` if you want a group other than `waitlist`
+
+Then restart the dev server or rebuild for production so the values are inlined into the static export.

@@ -1,5 +1,6 @@
 import type { CSSProperties, ReactNode } from "react";
 import styles from "./card_grid.module.css";
+import { ImageBlendCard } from "./components/image_blend_card/image_blend_card";
 import { IconCard } from "./components/icon_card/icon_card";
 import { OverlaidCard } from "./components/overlaid_card/overlaid_card";
 import { StackedCard } from "./components/stacked_card/stacked_card";
@@ -25,4 +26,5 @@ export function CardGrid({ children, rowHeight = 438 }: CardGridProps) {
 
 CardGrid.StackedCard = StackedCard;
 CardGrid.OverlaidCard = OverlaidCard;
+CardGrid.ImageBlendCard = ImageBlendCard;
 CardGrid.IconCard = IconCard;

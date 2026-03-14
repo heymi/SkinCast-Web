@@ -65,7 +65,7 @@ function OpenGraphPreviewContent({
       ref={previewFrameRef}
     >
       <div className={styles.content}>
-        <AppIcon src={iconSrc} size={180} />
+        <AppIcon src={iconSrc} size={180} mask={true} />
         <h1 className={`${styles.title} ${titleFontStyleClass}`}>{title}</h1>
       </div>
 

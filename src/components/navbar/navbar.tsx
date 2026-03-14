@@ -6,7 +6,7 @@ import styles from "./navbar.module.css";
 interface NavbarProps {
   icon: React.ReactNode;
   appName: string;
-  links?: { label: string; href: string; external?: boolean }[];
+  links?: { label: string; href: string; external?: boolean; newTab?: boolean }[];
   action: React.ReactNode;
 }
 
@@ -32,7 +32,13 @@ export function Navbar({ icon, appName, links, action }: NavbarProps) {
                 return (
                   <li key={link.href} className={styles.navLinkItem}>
                     {link.external ? (
-                      <a href={href}>{link.label}</a>
+                      <a
+                        href={href}
+                        target={link.newTab ? "_blank" : undefined}
+                        rel={link.newTab ? "noreferrer" : undefined}
+                      >
+                        {link.label}
+                      </a>
                     ) : (
                       <Link href={href}>{link.label}</Link>
                     )}

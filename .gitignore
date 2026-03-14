@@ -3,6 +3,7 @@ node_modules
 .next
 out
 .vscode
+.tmp
 .env*
 tsconfig.tsbuildinfo
 npm-debug.log*

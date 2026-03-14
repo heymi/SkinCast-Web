@@ -4,14 +4,12 @@ import type { Metadata, Viewport } from "next";
 import { AppIcon } from "@/components/app_icon/app_icon";
 import { CompactFooter } from "@/components/compact_footer/compact_footer";
 import { DownloadActionButton } from "@/components/download_action_button/download_action_button";
-import { EmailForm } from "@/components/email_form/email_form";
-import { Hero } from "@/components/hero/hero";
+import { GetNotifiedActionButton } from "@/components/get_notified_action_button/get_notified_action_button";
 import { MaterialSymbolsLink } from "@/components/material_symbols_link/material_symbols_link";
 import { Navbar } from "@/components/navbar/navbar";
 import { ThemeStyle } from "@/components/theme_style/theme_style";
 import "@/global.css";
 import { ThemeProvider } from "@/providers/theme_provider";
-import { Section } from "@/components/section/section";
 
 export const metadata: Metadata = {
   /**
@@ -19,8 +17,9 @@ export const metadata: Metadata = {
    * Recommended length for title is max 60 characters.
    * Recommended length for description is max 160 characters.
    */
-  title: "Website title",
-  description: "Website description",
+  title: "SkinCast | Daily skin insights that feel personal",
+  description:
+    "Join the waitlist for SkinCast and get early access to daily skin insights, personalized guidance, and a calmer routine.",
 
   /**
    * Your website URL.
@@ -35,8 +34,9 @@ export const metadata: Metadata = {
    * run the dev server and go to `http://localhost:3000/open-graph-builder`.
    */
   openGraph: {
-    title: "App title",
-    description: "App description",
+    title: "SkinCast | Daily skin insights that feel personal",
+    description:
+      "Join the waitlist for SkinCast and get early access to daily skin insights, personalized guidance, and a calmer routine.",
     url: "https://app-website-url.com",
     images: [
       {
@@ -50,8 +50,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "App title",
-    description: "App description",
+    title: "SkinCast | Daily skin insights that feel personal",
+    description:
+      "Join the waitlist for SkinCast and get early access to daily skin insights, personalized guidance, and a calmer routine.",
     images: ["/og-preview.png"],
   },
 };
@@ -81,91 +82,56 @@ export default function RootLayout({
       </head>
       <body>
         <ThemeProvider>
-          {!IS_WAITLIST_ENABLED && (
-            <>
-              <Navbar
-                icon={<AppIcon src="/app_view/icon_placeholder.png" />}
-                appName="App Name"
-                links={[
-                  { label: "Features", href: "#features" },
-                  // Uncomment the line below once you're ready to start using Release Notes
-                  // { label: "Release Notes", href: "/release-notes" },
-                  { label: "Contact", href: "mailto:your.email@gmail.com" },
-                ]}
-                action={<DownloadActionButton />}
-              />
+          <Navbar
+            icon={<AppIcon src="/app_icon.png" mask={true} />}
+            appName="SkinCast"
+            links={[
+              {
+                label: "AEDC",
+                href: "https://aedc.cc",
+                external: true,
+                newTab: true,
+              },
+              { label: "Features", href: "#features" },
+              ...(IS_WAITLIST_ENABLED
+                ? [{ label: "Waitlist", href: "#waitlist" }]
+                : []),
+              // Uncomment the line below once you're ready to start using Release Notes
+              // { label: "Release Notes", href: "/release-notes" },
+            ]}
+            action={
+              IS_WAITLIST_ENABLED ? (
+                <GetNotifiedActionButton href="/#waitlist" label="Join waitlist" />
+              ) : (
+                <DownloadActionButton />
+              )
+            }
+          />
 
-              {children}
+          {children}
 
-              {/*
-                There is also a <MultiColumnFooter> component available
-                in case you need more space for links.
-              */}
-              <CompactFooter
-                appIcon={
-                  <AppIcon
-                    src="/app_view/icon_placeholder.png"
-                    filter="grayscale"
-                  />
-                }
-                links={[
-                  { label: "Privacy", href: "/privacy" },
-                  {
-                    label: "Terms of Use",
-                    href: "https://www.apple.com/legal/internet-services/itunes/dev/stdeula/",
-                    external: true,
-                  },
-                  {
-                    label: "Follow Updates",
-                    href: "https://your-social-media.com",
-                  },
-                ]}
-                footnoteLeading={`© ${new Date().getFullYear()}. All rights reserved.`}
-                footnoteTrailing={
-                  // I'd appreciate if you leave this link here, but feel free to remove it, no hard feelings :)
-                  <>
-                    Website is built with{" "}
-                    <a target="_blank" href="https://appview.dev">
-                      AppView
-                    </a>
-                  </>
-                }
-              />
-            </>
-          )}
-
-          {IS_WAITLIST_ENABLED && (
-            <Section paddingTop={60}>
-              <Hero
-                title="App Title"
-                subtitle="Short app description that highlights what the app does and its key value"
-                media={
-                  <Hero.Image
-                    src="/app_view/screenshot_placeholder.png"
-                    alt=""
-                    bezel="iPhone 17 Black"
-                  />
-                }
-                action={
-                  <>
-                    <EmailForm
-                      providerConfig={{
-                        provider: "loops",
-                        config: {
-                          formId: "your-loops-form-id",
-                        },
-                      }}
-                    />
-                    {/*
-                      You can also use a simple button to redirect users
-                      to a custom page where you collect emails
-                    */}
-                    {/* <GetNotifiedActionButton href="your-email-form-link" /> */}
-                  </>
-                }
-              />
-            </Section>
-          )}
+          {/*
+            There is also a <MultiColumnFooter> component available
+            in case you need more space for links.
+          */}
+          <CompactFooter
+            appIcon={
+              <AppIcon src="/app_icon.png" mask={true} filter="grayscale" />
+            }
+            links={[
+              { label: "Privacy", href: "/privacy" },
+              { label: "Terms", href: "/terms" },
+            ]}
+            footnoteLeading={`© ${new Date().getFullYear()} SkinCast. All rights reserved.`}
+            footnoteTrailing={
+              <>
+                Built with{" "}
+                <a target="_blank" href="https://appview.dev">
+                  AppView
+                </a>
+              </>
+            }
+          />
         </ThemeProvider>
 
         {/* <PlausibleAnalytics domain="your-app-domain.com" /> */}

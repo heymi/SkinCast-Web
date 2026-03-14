@@ -22,6 +22,7 @@ export function Hero({
   action,
 }: HeroProps) {
   const titleFontStyleClass = buildClassNameForFontStyle(titleFontStyle, {
+    display: styles.display,
     whimsical: styles.whimsical,
     cursive: styles.cursive,
   });

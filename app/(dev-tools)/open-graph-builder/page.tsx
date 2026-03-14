@@ -16,7 +16,7 @@ export default function OpenGraphBuilderPage() {
 				*/}
         <OpenGraphPreview
           title="App Title"
-          iconSrc="/app_view/icon_placeholder.png"
+          iconSrc="/app_icon.png"
           screenshotSrc="/app_view/screenshot_placeholder.png"
           bezel="iPhone 17 Black"
           bezelCrop={{ edge: "bottom", croppedRatio: 0.35 }}

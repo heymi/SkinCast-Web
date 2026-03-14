@@ -1,11 +1,20 @@
 .appIcon {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  border-radius: 22.5%;
+
   &.grayscale {
     filter: grayscale(100%);
   }
 }
 
 .mask {
+  border-radius: 0;
   mask: url('/app_view/app_icon_mask.svg') center/contain no-repeat;
+  -webkit-mask: url('/app_view/app_icon_mask.svg') center/contain no-repeat;
 }
 
 .tintOverlay {
