@@ -3,11 +3,23 @@ import { DownloadActionButton } from "@/components/download_action_button/downlo
 import { EmailForm } from "@/components/email_form/email_form";
 import { Hero } from "@/components/hero/hero";
 import { Section } from "@/components/section/section";
+import sharedGridStyles from "@/components/card_grid/shared.module.css";
 import {
   IS_WAITLIST_ENABLED,
   LOOPS_WAITLIST_FORM_ID,
   LOOPS_WAITLIST_USER_GROUP,
 } from "@/constants";
+import styles from "./page.module.css";
+
+const PRIVACY_FIRST_ICON = (
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    viewBox="0 0 512 512"
+    fill="currentColor"
+  >
+    <path d="M479.07 111.36a16 16 0 0 0-13.15-14.74c-86.5-15.52-122.61-26.74-203.33-63.2a16 16 0 0 0-13.18 0C168.69 69.88 132.58 81.1 46.08 96.62a16 16 0 0 0-13.15 14.74c-3.85 61.11 4.36 118.05 24.43 169.24A349.5 349.5 0 0 0 129 393.11c53.47 56.73 110.24 81.37 121.07 85.73a16 16 0 0 0 12 0c10.83-4.36 67.6-29 121.07-85.73a349.5 349.5 0 0 0 71.5-112.51c20.07-51.19 28.28-108.13 24.43-169.24m-131 75.11l-110.8 128a16 16 0 0 1-11.41 5.53h-.66a16 16 0 0 1-11.2-4.57l-49.2-48.2a16 16 0 1 1 22.4-22.86l37 36.29l99.7-115.13a16 16 0 0 1 24.2 20.94Z" />
+  </svg>
+);
 
 export default function Page() {
   return (
@@ -116,7 +128,7 @@ export default function Page() {
           />
 
           <CardGrid.StackedCard
-            maxWidth="half"
+            maxWidth="twoThirds"
             title="Know the next move."
             description="Get a focused action plan for today, from hydration support to barrier recovery, based on what your skin needs now."
             media={
@@ -131,21 +143,27 @@ export default function Page() {
             textAlignment="center"
           />
 
-          <CardGrid.StackedCard
-            maxWidth="half"
-            title="Stay steady over the week."
-            description="Follow your 7-day trend to spot patterns, see what is improving, and keep your routine aligned with changing conditions."
-            media={
-              <CardGrid.StackedCard.Image
-                src="/screenshots/score-action-plan.png"
-                bezel="iPhone 17 Black"
-                bezelCrop={{ edge: "top", croppedRatio: 0.54 }}
-                alt="Action plan screen with moisturizer guidance and seven-day impact trend"
-              />
-            }
-            layoutDirection="forward"
-            textAlignment="center"
-          />
+          <figure
+            className={`${sharedGridStyles.gridCardItem} ${sharedGridStyles.third}`}
+          >
+            <div className={styles.privacyCard}>
+              <div className={styles.privacyVisual} aria-hidden="true">
+                <div className={styles.privacyShield}>{PRIVACY_FIRST_ICON}</div>
+                <div className={styles.privacyChips}>
+                  <span className={styles.privacyChip}>No account</span>
+                  <span className={styles.privacyChip}>No sign-in</span>
+                  <span className={styles.privacyChip}>No tracking</span>
+                </div>
+              </div>
+              <div className={styles.privacyContent}>
+                <h2 className={styles.privacyTitle}>Private by design.</h2>
+                <p className={styles.privacyDescription}>
+                  SkinCast works without registration or login, and it does not
+                  collect personal information from app use.
+                </p>
+              </div>
+            </div>
+          </figure>
         </CardGrid>
       </Section>
 

@@ -1,0 +1,101 @@
+.privacyCard {
+  height: 100%;
+  padding: 22px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+  text-align: center;
+}
+
+.privacyVisual {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+}
+
+.privacyShield {
+  color: var(--color-text-primary);
+}
+
+.privacyShield svg {
+  width: 56px;
+  height: 56px;
+}
+
+.privacyChips {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px 10px;
+  max-width: 280px;
+}
+
+.privacyChip {
+  font-size: 11px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-text-secondary);
+}
+
+.privacyContent {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  align-items: center;
+}
+
+.privacyTitle {
+  max-width: 8ch;
+  font-size: 30px;
+  line-height: 0.98;
+  letter-spacing: -0.035em;
+  font-weight: 800;
+}
+
+.privacyDescription {
+  max-width: 26ch;
+  font-size: 16px;
+  line-height: 1.14;
+  font-weight: 500;
+  color: var(--color-text-secondary);
+}
+
+@container mediaCard (width >= 580px) {
+  .privacyCard {
+    padding: 24px;
+    gap: 20px;
+  }
+
+  .privacyVisual {
+    gap: 16px;
+  }
+
+  .privacyShield svg {
+    width: 64px;
+    height: 64px;
+  }
+
+  .privacyChip {
+    font-size: 11px;
+  }
+
+  .privacyTitle {
+    font-size: 34px;
+  }
+
+  .privacyDescription {
+    max-width: 28ch;
+    font-size: 17px;
+  }
+}
+
+@container root style(--color-scheme: dark) {
+  .privacyChip {
+    color: var(--color-text-secondary);
+  }
+}
