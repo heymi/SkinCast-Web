@@ -226,14 +226,17 @@ export default function Page() {
       </Section>
 
       <Section title="Frequently asked questions" navigationAnchor="faq">
-        <dl className={styles.faqList}>
+        <div className={styles.faqList}>
           {FAQ_ITEMS.map((item) => (
-            <div key={item.question} className={styles.faqItem}>
-              <dt className={styles.faqQuestion}>{item.question}</dt>
-              <dd className={styles.faqAnswer}>{item.answer}</dd>
-            </div>
+            <details key={item.question} className={styles.faqItem}>
+              <summary className={styles.faqQuestion}>
+                {item.question}
+                <span className={styles.faqIcon} aria-hidden="true" />
+              </summary>
+              <p className={styles.faqAnswer}>{item.answer}</p>
+            </details>
           ))}
-        </dl>
+        </div>
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
