@@ -11,6 +11,39 @@ import {
 } from "@/constants";
 import styles from "./page.module.css";
 
+const FAQ_ITEMS = [
+  {
+    question: "How does weather affect my skin?",
+    answer:
+      "Weather conditions like humidity, temperature, UV index, and wind directly impact your skin's hydration, oil production, and barrier function. Low humidity can cause dryness and flaking, high UV accelerates aging and damage, and temperature swings can trigger sensitivity or redness. SkinCast analyzes these factors together to give you a clear daily picture.",
+  },
+  {
+    question: "What makes SkinCast different from other skincare apps?",
+    answer:
+      "SkinCast focuses on the connection between daily weather conditions and your skin. Instead of generic tips, it reads real-time climate data — humidity, UV, temperature, and environmental stress — and translates that into personalized guidance based on your specific skin concerns like acne, dryness, or sensitivity.",
+  },
+  {
+    question: "Do I need to create an account to use SkinCast?",
+    answer:
+      "No. SkinCast is private by design. It works without registration, login, or any personal information collection. Your skin data stays on your device.",
+  },
+  {
+    question: "What skin concerns does SkinCast support?",
+    answer:
+      "SkinCast supports a range of concerns including acne, dryness, sensitivity, redness, rosacea, and more. You set your concerns once, and every daily read adapts to what matters most to you.",
+  },
+  {
+    question: "Is SkinCast free to use?",
+    answer:
+      "SkinCast offers a free daily skin read with core features. The Pro tier unlocks richer analysis, clearer explanations, and more personalized guidance for those who want to go deeper.",
+  },
+  {
+    question: "How does the daily skin score work?",
+    answer:
+      "The daily skin score is an at-a-glance number that highlights overall skin stress based on current weather conditions and your concerns. It surfaces the top risk factor and breaks down the conditions shaping how your skin may feel, along with a focused action plan.",
+  },
+] as const;
+
 const PRIVACY_FIRST_ICON = (
   <svg
     xmlns="http://www.w3.org/2000/svg"
@@ -190,6 +223,34 @@ export default function Page() {
             description="Scores, trends, and action plans help you stay consistent and learn what your skin responds to over time."
           />
         </CardGrid>
+      </Section>
+
+      <Section title="Frequently asked questions" navigationAnchor="faq">
+        <dl className={styles.faqList}>
+          {FAQ_ITEMS.map((item) => (
+            <div key={item.question} className={styles.faqItem}>
+              <dt className={styles.faqQuestion}>{item.question}</dt>
+              <dd className={styles.faqAnswer}>{item.answer}</dd>
+            </div>
+          ))}
+        </dl>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "FAQPage",
+              mainEntity: FAQ_ITEMS.map((item) => ({
+                "@type": "Question",
+                name: item.question,
+                acceptedAnswer: {
+                  "@type": "Answer",
+                  text: item.answer,
+                },
+              })),
+            }),
+          }}
+        />
       </Section>
 
       <Section paddingTop={60} paddingBottom={160}>
