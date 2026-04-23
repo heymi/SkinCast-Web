@@ -15,9 +15,9 @@ export default function OpenGraphBuilderPage() {
 					* Adjust the screenshot crop if needed
 				*/}
         <OpenGraphPreview
-          title="App Title"
+          title="Daily skin insights."
           iconSrc="/app_icon.png"
-          screenshotSrc="/app_view/screenshot_placeholder.png"
+          screenshotSrc="/screenshots/dashboard-score.png"
           bezel="iPhone 17 Black"
           bezelCrop={{ edge: "bottom", croppedRatio: 0.35 }}
           theme="light"
