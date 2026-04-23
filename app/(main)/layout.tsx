@@ -53,7 +53,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     images: [
       {
-        url: "/og-preview.png?v=20260423",
+        url: "/og-preview-2026-04-23.png",
         width: 1280,
         height: 720,
         alt: "SkinCast app preview showing daily skin insights and personalized care guidance",
@@ -68,7 +68,7 @@ export const metadata: Metadata = {
       "AI-powered daily skin forecast based on weather, UV, and humidity. Personalized skincare guidance for your concerns.",
     images: [
       {
-        url: "/og-preview.png?v=20260423",
+        url: "/og-preview-2026-04-23.png",
         alt: "SkinCast app preview showing daily skin insights and personalized care guidance",
       },
     ],
