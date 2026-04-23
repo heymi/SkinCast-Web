@@ -15,7 +15,7 @@ export const THEME: "system" | "light" | "dark" = "system";
  *
  * Example: "6502667826"
  */
-export const APP_ID = "1234567890";
+export const APP_ID = "6760647671";
 
 /**
  * Custom fonts for 'whimsical' and 'cursive' font styles.
@@ -79,7 +79,7 @@ export const COLORS: ColorScheme = {
 
 export const MAX_RELEASE_NOTES_PER_PAGE = 5;
 
-export const IS_WAITLIST_ENABLED = true;
+export const IS_WAITLIST_ENABLED = false;
 export const LOOPS_WAITLIST_FORM_ID =
   process.env.NEXT_PUBLIC_LOOPS_FORM_ID ?? "";
 export const LOOPS_WAITLIST_USER_GROUP =
