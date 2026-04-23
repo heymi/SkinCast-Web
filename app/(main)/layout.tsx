@@ -48,7 +48,6 @@ export const metadata: Metadata = {
     title: "SkinCast | Daily skin insights that feel personal",
     description:
       "AI-powered daily skin forecast based on weather, UV, and humidity. Get personalized skincare guidance tailored to your concerns.",
-    url: SITE_URL,
     siteName: "SkinCast",
     locale: "en_US",
     images: [
