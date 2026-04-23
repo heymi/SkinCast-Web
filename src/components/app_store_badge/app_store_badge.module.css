@@ -1,0 +1,31 @@
+.badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.15s ease-in-out;
+  line-height: 0;
+}
+
+.badge:hover {
+  transform: scale(1.03);
+}
+
+.badge:active {
+  transform: scale(0.97);
+}
+
+.image {
+  display: block;
+  height: 100%;
+  aspect-ratio: 119.66407 / 40;
+  background-image: url("/app_view/app_store_badge_black.svg");
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+}
+
+@container root style(--color-scheme: dark) {
+  .image {
+    background-image: url("/app_view/app_store_badge_white.svg");
+  }
+}

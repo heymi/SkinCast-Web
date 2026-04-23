@@ -1,5 +1,5 @@
+import { AppStoreBadge } from "@/components/app_store_badge/app_store_badge";
 import { CardGrid } from "@/components/card_grid/card_grid";
-import { DownloadActionButton } from "@/components/download_action_button/download_action_button";
 import { EmailForm } from "@/components/email_form/email_form";
 import { Hero } from "@/components/hero/hero";
 import { Section } from "@/components/section/section";
@@ -90,7 +90,7 @@ export default function Page() {
                 }}
               />
             ) : (
-              <DownloadActionButton size="medium" label="Download on the App Store" />
+              <AppStoreBadge />
             )
           }
         />
@@ -271,7 +271,7 @@ export default function Page() {
             }}
           />
         ) : (
-          <DownloadActionButton size="medium" />
+          <AppStoreBadge height={64} />
         )}
       </Section>
     </>
