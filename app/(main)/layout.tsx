@@ -168,6 +168,12 @@ export default function RootLayout({
                 ? [{ label: "Waitlist", href: "#waitlist" }]
                 : []),
               { label: "Release Notes", href: "/release-notes" },
+              {
+                label: "Contact",
+                href: "https://www.aedc.cc/contact",
+                external: true,
+                newTab: true,
+              },
             ]}
             action={
               IS_WAITLIST_ENABLED ? (
@@ -191,6 +197,11 @@ export default function RootLayout({
             links={[
               { label: "Privacy", href: "/privacy" },
               { label: "Terms", href: "/terms" },
+              {
+                label: "Contact",
+                href: "https://www.aedc.cc/contact",
+                external: true,
+              },
             ]}
             footnoteLeading={`© ${new Date().getFullYear()} SkinCast. All rights reserved.`}
             footnoteTrailing={
