@@ -1,3 +1,34 @@
+.heroActions {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 14px;
+}
+
+.languageSwitch {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--color-fill-3);
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--color-fill-0) 84%, transparent);
+  color: var(--color-text-primary);
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1;
+  letter-spacing: 0;
+}
+
+.languageSwitch span:nth-child(2) {
+  color: var(--color-text-secondary);
+}
+
+.languageSwitch:hover {
+  background: var(--color-fill-0);
+}
+
 .privacyCard {
   height: 100%;
   padding: 22px 22px;
@@ -50,7 +81,7 @@
 }
 
 .privacyTitle {
-  max-width: 8ch;
+  max-width: 10ch;
   font-size: 30px;
   line-height: 0.98;
   letter-spacing: -0.035em;
@@ -58,11 +89,21 @@
 }
 
 .privacyDescription {
-  max-width: 26ch;
+  max-width: 28ch;
   font-size: 16px;
   line-height: 1.14;
   font-weight: 500;
   color: var(--color-text-secondary);
+}
+
+.finalCta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  color: var(--color-text-secondary);
+  font-size: 14px;
+  font-weight: 700;
 }
 
 @container mediaCard (width >= 580px) {
@@ -95,6 +136,14 @@
 }
 
 @container root style(--color-scheme: dark) {
+  .languageSwitch {
+    background: color-mix(in oklab, var(--color-fill-1) 80%, transparent);
+  }
+
+  .languageSwitch:hover {
+    background: var(--color-fill-2);
+  }
+
   .privacyChip {
     color: var(--color-text-secondary);
   }
@@ -205,6 +254,16 @@
 }
 
 @container root (width < 768px) {
+  .heroActions {
+    justify-content: center;
+  }
+
+  .languageSwitch {
+    min-height: 40px;
+    padding: 0 14px;
+    font-size: 13px;
+  }
+
   .faqList {
     padding: 0 20px;
   }
