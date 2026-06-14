@@ -14,9 +14,9 @@ import { ThemeProvider } from "@/providers/theme_provider";
 const SITE_URL = "https://skincast.aedc.cc";
 
 export const metadata: Metadata = {
-  title: "SkinCast | Daily skin insights that feel personal",
+  title: "SkinCast: UV Skincare | Weather-based skin forecast",
   description:
-    "AI-powered daily skin forecast based on weather, UV, and humidity. Get personalized skincare guidance tailored to your concerns and today's climate.",
+    "Daily UV, humidity, wind, and air-quality skincare guidance for sensitive skin, travel, and changing weather.",
   metadataBase: new URL(SITE_URL),
   alternates: {
     canonical: "/",
@@ -25,7 +25,11 @@ export const metadata: Metadata = {
     "skincare app",
     "skin weather forecast",
     "daily skin care",
-    "AI skincare",
+    "uv skincare",
+    "sunscreen reminder",
+    "sensitive skin weather",
+    "travel skincare",
+    "air quality skincare",
     "UV skin protection",
     "personalized skin care",
     "skin humidity",
@@ -45,9 +49,9 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    title: "SkinCast | Daily skin insights that feel personal",
+    title: "SkinCast: UV Skincare | Weather-based skin forecast",
     description:
-      "AI-powered daily skin forecast based on weather, UV, and humidity. Get personalized skincare guidance tailored to your concerns.",
+      "Daily UV, humidity, wind, and air-quality skincare guidance for sensitive skin, travel, and changing weather.",
     siteName: "SkinCast",
     locale: "en_US",
     images: [
@@ -55,20 +59,20 @@ export const metadata: Metadata = {
         url: "/og-preview-2026-04-23.png",
         width: 1280,
         height: 720,
-        alt: "SkinCast app preview showing daily skin insights and personalized care guidance",
+        alt: "SkinCast preview showing a weather-based skin forecast and daily skin stress score",
       },
     ],
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SkinCast | Daily skin insights that feel personal",
+    title: "SkinCast: UV Skincare | Weather-based skin forecast",
     description:
-      "AI-powered daily skin forecast based on weather, UV, and humidity. Personalized skincare guidance for your concerns.",
+      "Daily UV, humidity, wind, and air-quality skincare guidance for sensitive skin, travel, and changing weather.",
     images: [
       {
         url: "/og-preview-2026-04-23.png",
-        alt: "SkinCast app preview showing daily skin insights and personalized care guidance",
+        alt: "SkinCast preview showing a weather-based skin forecast and daily skin stress score",
       },
     ],
   },
@@ -106,26 +110,26 @@ export default function RootLayout({
                   name: "SkinCast",
                   url: "https://skincast.aedc.cc",
                   description:
-                    "AI-powered daily skin forecast based on weather, UV, and humidity.",
+                    "Daily UV, humidity, wind, and air-quality skincare guidance.",
                 },
                 {
                   "@type": "SoftwareApplication",
-                  name: "SkinCast",
+                  name: "SkinCast: UV Skincare",
                   operatingSystem: "iOS",
                   applicationCategory: "HealthApplication",
                   description:
-                    "SkinCast uses AI to read today's climate conditions and translate their skin impact into personalized care guidance.",
+                    "SkinCast turns UV, humidity, wind, temperature, and air quality into a daily skin forecast for informational and wellness use.",
                   offers: {
                     "@type": "Offer",
                     price: "0",
                     priceCurrency: "USD",
                   },
                   featureList: [
-                    "AI-powered daily skin climate analysis",
-                    "Personalized skin concern tracking",
-                    "Daily skin stress score",
-                    "Weather-based skincare action plans",
-                    "Home screen widgets",
+                    "Daily UV and weather-based skin forecast",
+                    "Personalized skin profile and concern tracking",
+                    "Daily skin stress score and top risk",
+                    "Weather-aware skincare action plans",
+                    "Dermatology-informed source references",
                     "Privacy-first design with no account required",
                   ],
                 },
@@ -164,6 +168,12 @@ export default function RootLayout({
                 ? [{ label: "Waitlist", href: "#waitlist" }]
                 : []),
               { label: "Release Notes", href: "/release-notes" },
+              {
+                label: "Contact",
+                href: "https://www.aedc.cc/contact",
+                external: true,
+                newTab: true,
+              },
             ]}
             action={
               IS_WAITLIST_ENABLED ? (
@@ -187,6 +197,11 @@ export default function RootLayout({
             links={[
               { label: "Privacy", href: "/privacy" },
               { label: "Terms", href: "/terms" },
+              {
+                label: "Contact",
+                href: "https://www.aedc.cc/contact",
+                external: true,
+              },
             ]}
             footnoteLeading={`© ${new Date().getFullYear()} SkinCast. All rights reserved.`}
             footnoteTrailing={

@@ -1,11 +1,11 @@
 {
   "name": "SkinCast",
   "short_name": "SkinCast",
-  "description": "AI-powered daily skin forecast based on weather, UV, and humidity.",
+  "description": "Daily UV, humidity, wind, and air-quality skincare guidance.",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#FFFFFF",
-  "theme_color": "#000000",
+  "background_color": "#050507",
+  "theme_color": "#050507",
   "icons": [
     {
       "src": "/app_icon.png",

@@ -37,6 +37,9 @@ export const MATERIAL_SYMBOLS = [
   "pause",
   "lock",
   "target",
+  "wb_sunny",
+  "air",
+  "travel_explore",
 ] as const;
 
 // Neutral
